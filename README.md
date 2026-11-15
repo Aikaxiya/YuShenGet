@@ -4,8 +4,10 @@
 
 ## 界面示例
 
-<img width="480" height="890" alt="界面示例 1" src="https://github.com/user-attachments/assets/e802a72a-9166-4182-bd27-412ee0fb18f1" />
-<img width="499" height="1262" alt="界面示例 2" src="https://github.com/user-attachments/assets/cbc79484-0c60-435e-bbec-a752fe63abeb" />
+<p>
+  <img height="460" alt="界面示例 1" src="https://github.com/user-attachments/assets/e802a72a-9166-4182-bd27-412ee0fb18f1" />
+  <img height="460" alt="界面示例 2" src="https://github.com/user-attachments/assets/cbc79484-0c60-435e-bbec-a752fe63abeb" />
+</p>
 
 ## 功能
 
