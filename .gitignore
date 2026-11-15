@@ -1,0 +1,12 @@
+/target
+**/target
+**/node_modules
+**/dist
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+.tmp/
+apps/desktop/src-tauri/gen/
+# 运行期数据目录（exe 同级 data/），不进版本库
+**/data/

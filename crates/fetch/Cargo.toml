@@ -1,0 +1,21 @@
+[package]
+name = "gacha-fetch"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+gacha-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+url = { workspace = true }
+
+# 用 native-tls 而不是 rustls：Windows 下直接走 SChannel，
+# 不引入 ring/aws-lc 这类需要额外 C 工具链的加密后端。
+# 注意：ureq 的默认 TLS 配置只在 `tls` 特性（rustls）下才装配，
+# 单开 `native-tls` 会在运行时报「no TLS backend is configured」，
+# 因此这里显式构造 native-tls 连接器传给 AgentBuilder。
+ureq = { version = "2", default-features = false, features = ["json", "native-tls"] }
+native-tls = "0.2"

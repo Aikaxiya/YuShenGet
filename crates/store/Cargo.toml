@@ -1,0 +1,14 @@
+[package]
+name = "gacha-store"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+gacha-core = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+
+# bundled：把 SQLite 源码一起编译，不依赖系统里是否装了 sqlite3.dll
+rusqlite = { version = "0.32", features = ["bundled"] }

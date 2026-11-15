@@ -1,0 +1,275 @@
+:root {
+  --bg-deep: #100c1c;
+  --bg-mid: #1d1630;
+  --bg-glow: rgba(120, 92, 200, 0.28);
+  --panel: rgba(45, 36, 70, 0.72);
+  --panel-strong: rgba(30, 24, 48, 0.92);
+  --border: rgba(168, 148, 226, 0.22);
+  --gold: #e8c56a;
+  --gold-light: #ffedbb;
+  --gold-dark: #9c7a2e;
+  --text: #f2edfb;
+  --text-dim: #b0a6c9;
+  --text-faint: #7d7496;
+  --up: #6fd39b;
+  --off: #e2677d;
+  --pity-low: #4fc98a;
+  --pity-mid: #e0b455;
+  --pity-high: #e2606a;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1100px 520px at 50% -8%, var(--bg-glow), transparent 62%),
+    radial-gradient(700px 420px at 88% 12%, rgba(88, 120, 210, 0.16), transparent 60%),
+    linear-gradient(180deg, #191231 0%, var(--bg-deep) 46%, #0a0813 100%);
+  color: var(--text);
+  font-family: 'HarmonyOS Sans SC', 'Microsoft YaHei', 'PingFang SC', system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 148, 226, 0.32);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+textarea,
+input {
+  font-family: inherit;
+  color: var(--text);
+}
+
+.shell {
+  min-height: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0 6px;
+  min-height: 48px;
+}
+
+.topbar__title {
+  flex: 1;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(232, 197, 106, 0.16);
+  color: var(--gold-light);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 15px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  /* 不用 backdrop-filter：它会强制 WebView2 走独立合成层，
+     既增加开销，也让窗口截图类工具抓不到内容（排查期踩过这个坑）。 */
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 13px 0;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2a1f08;
+  background: linear-gradient(180deg, #f4d98c 0%, var(--gold) 52%, #c9a24c 100%);
+  box-shadow: 0 6px 18px rgba(201, 162, 76, 0.24);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 9px 22px rgba(232, 197, 106, 0.3);
+}
+
+.primary-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ghost-btn {
+  width: 100%;
+  padding: 11px 0;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text);
+  background: rgba(58, 46, 90, 0.55);
+  border: 1px solid var(--border);
+  transition: background 0.18s ease;
+}
+
+.ghost-btn:hover:not(:disabled) {
+  background: rgba(78, 62, 120, 0.7);
+}
+
+.ghost-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--text-dim);
+}
+
+.faint {
+  color: var(--text-faint);
+}
+
+.error-text {
+  margin-top: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: #ffc9d2;
+  background: rgba(180, 60, 88, 0.2);
+  border: 1px solid rgba(226, 103, 125, 0.42);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* ===== 标签闪烁 / 扫光特效 =====
+   纯 CSS，只用 transform + opacity 动画（合成线程），不触发重排重绘；
+   颜色、周期可用 --fx-light / --fx-duration 等变量在具体标签上覆盖。 */
+@keyframes fx-sweep {
+  0%,
+  12% {
+    transform: translateX(-220%) skewX(-18deg);
+  }
+  55%,
+  100% {
+    transform: translateX(340%) skewX(-18deg);
+  }
+}
+
+@keyframes fx-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.66;
+  }
+}
+
+.fx-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.fx-shine::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--fx-light, rgba(255, 255, 255, 0.55)),
+    transparent
+  );
+  mix-blend-mode: var(--fx-blend, screen);
+  transform: translateX(-220%) skewX(-18deg);
+  animation: fx-sweep var(--fx-duration, 3.4s) ease-in-out infinite;
+  animation-delay: var(--fx-delay, 0s);
+  pointer-events: none;
+}
+
+.fx-twinkle {
+  animation: fx-twinkle var(--fx-twinkle-duration, 2.6s) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-shine::after,
+  .fx-twinkle {
+    animation: none;
+  }
+}

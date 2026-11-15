@@ -1,0 +1,21 @@
+[package]
+name = "teyvat-gacha-desktop"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+gacha-core = { workspace = true }
+gacha-fetch = { workspace = true }
+gacha-store = { workspace = true }
+# 直接读系统剪贴板：绕开 WebView2 的 clipboard-read 权限弹窗
+arboard = "3"
+# 头像本地文件转 data URL，省掉额外的 asset 协议配置
+base64 = "0.22"

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>提瓦特祈愿分析</title>
+    <style>
+      /* 兜底样式内联：外部 CSS 或 JS 没加载时，至少能看出卡在哪一步 */
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #100c1c;
+      }
+      .boot {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Microsoft YaHei', system-ui, sans-serif;
+        font-size: 13px;
+        color: #b0a6c9;
+      }
+      #boot-error {
+        padding: 18px;
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-all;
+        font-family: Consolas, monospace;
+        font-size: 12px;
+        line-height: 1.7;
+        color: #ff9ab0;
+        user-select: text;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"><div class="boot">正在加载界面…</div></div>
+    <script>
+      // 桌面端白屏排查极其昂贵（无控制台），这里把启动期错误同时画在页面上、
+      // 并写进应用数据目录的 frontend-ready.log。
+      (function () {
+        function report(text) {
+          // 诊断细节只进日志与控制台，界面上只给一句用户可读的提示
+          try {
+            window.__TAURI_INTERNALS__.invoke('frontend_ready', { route: text });
+          } catch (error) {
+            // 浏览器预览环境没有 Tauri IPC，忽略
+          }
+          try {
+            console.error('[boot]', text);
+          } catch (error) {
+            // 没有控制台时忽略
+          }
+          var host = document.getElementById('app');
+          if (!host || document.getElementById('boot-error')) {
+            return;
+          }
+          var pre = document.createElement('pre');
+          pre.id = 'boot-error';
+          pre.textContent = '界面加载失败，请关闭后重新打开应用。';
+          host.appendChild(pre);
+        }
+
+        window.addEventListener(
+          'error',
+          function (event) {
+            var target = event.target;
+            if (target && (target.src || target.href)) {
+              report('资源加载失败：' + (target.src || target.href));
+              return;
+            }
+            report(
+              '脚本错误：' + event.message + '\n' + event.filename + ':' + event.lineno + ':' + event.colno,
+            );
+          },
+          true,
+        );
+
+        window.addEventListener('unhandledrejection', function (event) {
+          var reason = event.reason;
+          report('未处理的 Promise 拒绝：' + (reason && reason.stack ? reason.stack : String(reason)));
+        });
+      })();
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
