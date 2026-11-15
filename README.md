@@ -4,10 +4,10 @@
 
 ## 界面示例
 
-<p>
-  <img height="460" alt="界面示例 1" src="https://github.com/user-attachments/assets/e802a72a-9166-4182-bd27-412ee0fb18f1" />
-  <img height="460" alt="界面示例 2" src="https://github.com/user-attachments/assets/cbc79484-0c60-435e-bbec-a752fe63abeb" />
-</p>
+<table><tr>
+<td width="50%"><img width="100%" alt="界面示例 1" src="https://github.com/user-attachments/assets/e802a72a-9166-4182-bd27-412ee0fb18f1" /></td>
+<td width="50%"><img width="100%" alt="界面示例 2" src="https://github.com/user-attachments/assets/cbc79484-0c60-435e-bbec-a752fe63abeb" /></td>
+</tr></table>
 
 ## 功能
 
